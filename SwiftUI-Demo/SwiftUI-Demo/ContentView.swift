@@ -9,19 +9,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var brain: CalculatorBrain = .left("0")
+    @ObservedObject var model = CalculatorModel()
+    
+    @State private var editingHistory = false
     
     let scale: CGFloat = UIScreen.main.bounds.width / 414
     var body: some View {
         VStack(spacing: 12) {
             Spacer()
-            Text(brain.output)
+            Button("操作履历:\(model.history.count)") {
+                self.editingHistory = true
+            }.sheet(isPresented: self.$editingHistory) {
+                HistoryView(model: self.model)
+            }
+            Text(model.brain.output)
                 .font(.system(size: 76))
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 24)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-            CalculatorButtonPad(brain: $brain)
+            CalculatorButtonPad(model: model)
                 .padding(.bottom)
         }
         .scaleEffect(scale)
@@ -38,7 +45,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct CalculatorButtonPad: View {
-    @Binding var brain: CalculatorBrain
+    var model: CalculatorModel
     
     let pad: [[CalculatorButtonItem]] = [
         [.command(.clear), .command(.flip), .command(.percent), .op(.divide)],
@@ -50,14 +57,14 @@ struct CalculatorButtonPad: View {
     var body: some View {
         VStack(spacing: 8) {
             ForEach(pad, id: \.self) { row in
-                CalculatorButtonRow(brain: self.$brain, row: row)
+                CalculatorButtonRow(model: self.model, row: row)
             }
         }
     }
 }
 
 struct CalculatorButtonRow: View {
-    @Binding var brain: CalculatorBrain
+    var model: CalculatorModel
 
     let row: [CalculatorButtonItem]
 
@@ -65,7 +72,7 @@ struct CalculatorButtonRow: View {
         HStack {
             ForEach(row, id: \.self) { item in
                 CalculatorButton(title: item.title, size: item.size, backgroundColor: item.backgroundColor) {
-                    self.brain = self.brain.apply(item: item)
+                    self.model.apply(item)
                 }
             }
         }
