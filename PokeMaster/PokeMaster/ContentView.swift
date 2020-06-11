@@ -10,7 +10,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            PokemonInfoRow(model: .sample(id: 1), expanded: false)
+            PokemonInfoRow(model: .sample(id: 21), expanded: true)
+            PokemonInfoRow(model: .sample(id: 25), expanded: false)
+        }
     }
 }
 
