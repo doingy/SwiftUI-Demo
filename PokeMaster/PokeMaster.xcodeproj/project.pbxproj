@@ -86,6 +86,7 @@
 		0731F415249244D300B6320A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731F3CE249244D300B6320A /* Helpers.swift */; };
 		0731F417249249D200B6320A /* PokemonInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731F416249249D200B6320A /* PokemonInfoRow.swift */; };
 		0731F41924924D8B00B6320A /* ToolButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731F41824924D8B00B6320A /* ToolButtonModifier.swift */; };
+		0731F41B249257A300B6320A /* PokemonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731F41A249257A300B6320A /* PokemonList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +171,7 @@
 		0731F3CE249244D300B6320A /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0731F416249249D200B6320A /* PokemonInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoRow.swift; sourceTree = "<group>"; };
 		0731F41824924D8B00B6320A /* ToolButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolButtonModifier.swift; sourceTree = "<group>"; };
+		0731F41A249257A300B6320A /* PokemonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				0731F36E249243C600B6320A /* SceneDelegate.swift */,
 				0731F370249243C600B6320A /* ContentView.swift */,
 				0731F416249249D200B6320A /* PokemonInfoRow.swift */,
+				0731F41A249257A300B6320A /* PokemonList.swift */,
 				0731F41824924D8B00B6320A /* ToolButtonModifier.swift */,
 				0731F372249243C700B6320A /* Assets.xcassets */,
 				0731F377249243C700B6320A /* LaunchScreen.storyboard */,
@@ -505,6 +508,7 @@
 				0731F414249244D300B6320A /* Sample.swift in Sources */,
 				0731F41924924D8B00B6320A /* ToolButtonModifier.swift in Sources */,
 				0731F413249244D300B6320A /* FileHelper.swift in Sources */,
+				0731F41B249257A300B6320A /* PokemonList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
