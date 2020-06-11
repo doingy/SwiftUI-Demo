@@ -29,7 +29,8 @@ extension PokemonInfoPanel {
                             .fixedSize(horizontal: false, vertical: true)
                     }
                 }
-            }.frame(width: .infinity, alignment: .leading)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
