@@ -9,17 +9,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var brain: CalculatorBrain = .left("0")
+    
     let scale: CGFloat = UIScreen.main.bounds.width / 414
     var body: some View {
         VStack(spacing: 12) {
             Spacer()
-            Text("0")
+            Text(brain.output)
                 .font(.system(size: 76))
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 24)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-            CalculatorButtonPad()
+            CalculatorButtonPad(brain: $brain)
                 .padding(.bottom)
         }
         .scaleEffect(scale)
@@ -36,6 +38,8 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct CalculatorButtonPad: View {
+    @Binding var brain: CalculatorBrain
+    
     let pad: [[CalculatorButtonItem]] = [
         [.command(.clear), .command(.flip), .command(.percent), .op(.divide)],
         [.digit(7), .digit(8), .digit(9), .op(.multiply)],
@@ -46,20 +50,22 @@ struct CalculatorButtonPad: View {
     var body: some View {
         VStack(spacing: 8) {
             ForEach(pad, id: \.self) { row in
-                CalculatorButtonRow(row: row)
+                CalculatorButtonRow(brain: self.$brain, row: row)
             }
         }
     }
 }
 
 struct CalculatorButtonRow: View {
+    @Binding var brain: CalculatorBrain
+
     let row: [CalculatorButtonItem]
 
     var body: some View {
         HStack {
             ForEach(row, id: \.self) { item in
                 CalculatorButton(title: item.title, size: item.size, backgroundColor: item.backgroundColor) {
-                    print("xxx")
+                    self.brain = self.brain.apply(item: item)
                 }
             }
         }
