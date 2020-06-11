@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var model = CalculatorModel()
+    @EnvironmentObject var model: CalculatorModel
     
     @State private var editingHistory = false
     
@@ -28,7 +28,7 @@ struct ContentView: View {
                 .padding(.trailing, 24)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-            CalculatorButtonPad(model: model)
+            CalculatorButtonPad()
                 .padding(.bottom)
         }
         .scaleEffect(scale)
@@ -45,8 +45,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct CalculatorButtonPad: View {
-    var model: CalculatorModel
-    
+
     let pad: [[CalculatorButtonItem]] = [
         [.command(.clear), .command(.flip), .command(.percent), .op(.divide)],
         [.digit(7), .digit(8), .digit(9), .op(.multiply)],
@@ -57,14 +56,14 @@ struct CalculatorButtonPad: View {
     var body: some View {
         VStack(spacing: 8) {
             ForEach(pad, id: \.self) { row in
-                CalculatorButtonRow(model: self.model, row: row)
+                CalculatorButtonRow(row: row)
             }
         }
     }
 }
 
 struct CalculatorButtonRow: View {
-    var model: CalculatorModel
+    @EnvironmentObject var model: CalculatorModel
 
     let row: [CalculatorButtonItem]
 
