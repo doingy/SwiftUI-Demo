@@ -50,17 +50,18 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
 //        let contentView = MainTab().environmentObject(Store())
+        let contentView = CustomShape()
 
         // Use a UIHostingController as window root view controller.
-//        if let windowScene = scene as? UIWindowScene {
-//            let window = UIWindow(windowScene: windowScene)
-//            window.rootViewController = UIHostingController(rootView: contentView)
-//            self.window = window
-//            window.makeKeyAndVisible()
-//        }
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = UIHostingController(rootView: contentView)
+            self.window = window
+            window.makeKeyAndVisible()
+        }
         
-        let store = createStore(connectionOptions.urlContexts)
-        showMainTab(scene: scene, with: store)
+//        let store = createStore(connectionOptions.urlContexts)
+//        showMainTab(scene: scene, with: store)
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -68,4 +69,10 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         showMainTab(scene: scene, with: store)
     }
 
+}
+
+struct SceneDelegate_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
 }
