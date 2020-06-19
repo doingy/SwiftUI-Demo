@@ -9,23 +9,29 @@
 import SwiftUI
 
 struct PokemonList: View {
-    @State var expandingIndex: Int?
+
     @EnvironmentObject var store: Store
+    
+    var pokemonList: AppState.PokemonList {
+        store.appState.pokemonList
+    }
     
     var body: some View {
         ScrollView {
-            ForEach(store.appState.pokemonList.allPokemonsByID) { pokemon in
-                PokemonInfoRow(model: pokemon, expanded: self.expandingIndex == pokemon.id)
+            TextField("搜索", text: $store.appState.pokemonList.searchText.animation(nil))
+                .frame(height: 40)
+                .padding(.horizontal, 25)
+            ForEach(pokemonList.displayPokemons(with: store.appState.settings)) { pokemon in
+                PokemonInfoRow(model: pokemon, expanded: self.pokemonList.selectionsState.isExpanding(pokemon.id))
                     .onTapGesture {
                         withAnimation(.spring(response: 0.55, dampingFraction: 0.425, blendDuration: 0)) {
-                            if self.expandingIndex == pokemon.id {
-                                self.expandingIndex = nil
-                            } else {
-                                self.expandingIndex = pokemon.id
-                            }
+                            self.store.dispatch(.toggleListSelection(index: pokemon.id))
+                            self.store.dispatch(.loadAbilities(pokemon: pokemon.pokemon))
                         }
                 }
             }
+            Spacer()
+                .frame(height: 8)
         }
 //        .overlay(
 //            VStack {

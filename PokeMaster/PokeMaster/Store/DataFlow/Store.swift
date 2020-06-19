@@ -63,8 +63,24 @@ class Store: ObservableObject {
                 appState.settings.loginError = error
             }
             
+        case .logout:
+            appState.settings.loginUser = nil
+            
         case .email(let valid):
             appState.settings.isEmailValid = valid
+            
+        case .toggleListSelection(let index):
+            let expanding = appState.pokemonList.selectionsState.expandingIndex
+            if expanding == index {
+                appState.pokemonList.selectionsState.expandingIndex = nil
+                appState.pokemonList.selectionsState.panelPresented = false
+            } else {
+                appState.pokemonList.selectionsState.expandingIndex = index
+                appState.pokemonList.selectionsState.panelIndex = index
+            }
+            
+        case .togglePanelPresenting(let presenting):
+            appState.pokemonList.selectionsState.panelPresented = presenting
             
         case .loadPokemons:
             if appState.pokemonList.loadingPokemons {
@@ -82,6 +98,29 @@ class Store: ObservableObject {
             case .failure(let error):
                 print(error)
             }
+            
+        case .closeSafariView:
+            appState.pokemonList.isSFViewActive = false
+            
+        case .loadAbilities(let pokemon):
+            appCommand = LoadAbilitiesCommand(pokemon: pokemon)
+            
+        case .loadAbilitiesDone(let result):
+            switch result {
+            case .success(let loadedAbilities):
+                var abilities = appState.pokemonList.abilities ?? [:]
+                for ability in loadedAbilities {
+                    abilities[ability.id] = ability
+                }
+                appState.pokemonList.abilities = abilities
+                
+            case .failure(let error):
+                print(error)
+            }
+            
+        case .clearCache:
+            appState.pokemonList.pokemons = nil
+            appState.pokemonList.abilities = nil
         }
         
         return (appState, appCommand)

@@ -10,13 +10,15 @@ import SwiftUI
 import KingfisherSwiftUI
 
 struct PokemonInfoRow: View {
+    
+    @EnvironmentObject var store: Store
+    
     let model: PokemonViewModel
     let expanded: Bool
     
     var body: some View {
         VStack {
             HStack {
-//                Image("Pokemon-\(model.id)")
                 KFImage(model.iconImageURL)
                     .resizable()
                     .frame(width: 50, height: 50)
@@ -40,11 +42,16 @@ struct PokemonInfoRow: View {
                     Image(systemName: "star")
                         .modifier(ToolButtonModifier())
                 }
-                Button(action: {}) {
+                Button(action: {
+                    let target = !self.store.appState.pokemonList.selectionsState.panelPresented
+                    self.store.dispatch(.togglePanelPresenting(presenting: target))
+                }) {
                     Image(systemName: "chart.bar")
                         .modifier(ToolButtonModifier())
                 }
-                Button(action: {}) {
+                NavigationLink(destination: SafariView(url: model.detailPageURL){
+                    self.store.dispatch(.closeSafariView)
+                }.navigationBarTitle(Text(model.name), displayMode: .inline), isActive: expanded ? $store.appState.pokemonList.isSFViewActive : .constant(false)) {
                     Image(systemName: "info.circle")
                         .modifier(ToolButtonModifier())
                 }
@@ -71,11 +78,11 @@ struct PokemonInfoRow: View {
             }
         )
             .padding(.horizontal)
-//            .onTapGesture {
-//                withAnimation(.spring(response: 0.55, dampingFraction: 0.425, blendDuration: 0)) {
-//                    self.expanded.toggle()
-//                }
-//        }
+        //            .onTapGesture {
+        //                withAnimation(.spring(response: 0.55, dampingFraction: 0.425, blendDuration: 0)) {
+        //                    self.expanded.toggle()
+        //                }
+        //        }
     }
 }
 

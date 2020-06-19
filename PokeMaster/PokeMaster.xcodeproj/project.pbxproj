@@ -92,6 +92,9 @@
 		7223C807249B952D003FA0EC /* LoadPokemonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7223C806249B952D003FA0EC /* LoadPokemonRequest.swift */; };
 		7223C809249B97AA003FA0EC /* Array+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7223C808249B97AA003FA0EC /* Array+Combine.swift */; };
 		7224B6AC249BED8500D5D629 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7224B6AB249BED8500D5D629 /* KingfisherSwiftUI */; };
+		7224B6AE249C526300D5D629 /* LoadAbilityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224B6AD249C526300D5D629 /* LoadAbilityRequest.swift */; };
+		7224B6B0249C56A700D5D629 /* OverlaySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224B6AF249C56A700D5D629 /* OverlaySheet.swift */; };
+		7224B6B2249C8D9F00D5D629 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224B6B1249C8D9F00D5D629 /* SafariView.swift */; };
 		72331249249318DE004B427B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72331248249318DE004B427B /* SettingView.swift */; };
 		7233124D249321D4004B427B /* SettingsRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7233124C249321D4004B427B /* SettingsRootView.swift */; };
 		72B22AD3249A276500D8C7AC /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B22AD2249A276500D8C7AC /* MainTab.swift */; };
@@ -194,6 +197,9 @@
 		07EA482C249295600091128C /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		7223C806249B952D003FA0EC /* LoadPokemonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPokemonRequest.swift; sourceTree = "<group>"; };
 		7223C808249B97AA003FA0EC /* Array+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Combine.swift"; sourceTree = "<group>"; };
+		7224B6AD249C526300D5D629 /* LoadAbilityRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAbilityRequest.swift; sourceTree = "<group>"; };
+		7224B6AF249C56A700D5D629 /* OverlaySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaySheet.swift; sourceTree = "<group>"; };
+		7224B6B1249C8D9F00D5D629 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		72331248249318DE004B427B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7233124C249321D4004B427B /* SettingsRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootView.swift; sourceTree = "<group>"; };
 		72B22AD2249A276500D8C7AC /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
@@ -462,8 +468,10 @@
 		72B22AE3249A418100D8C7AC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7224B6AF249C56A700D5D629 /* OverlaySheet.swift */,
 				07EA482C249295600091128C /* BlurView.swift */,
 				0731F41824924D8B00B6320A /* ToolButtonModifier.swift */,
+				7224B6B1249C8D9F00D5D629 /* SafariView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -474,6 +482,7 @@
 				72B22AE7249A44C500D8C7AC /* LoginRequest.swift */,
 				72B22AF0249A554A00D8C7AC /* EmailCheckingRequest.swift */,
 				7223C806249B952D003FA0EC /* LoadPokemonRequest.swift */,
+				7224B6AD249C526300D5D629 /* LoadAbilityRequest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -627,6 +636,7 @@
 			files = (
 				0731F36D249243C600B6320A /* AppDelegate.swift in Sources */,
 				72B22AE8249A44C500D8C7AC /* LoginRequest.swift in Sources */,
+				7224B6B0249C56A700D5D629 /* OverlaySheet.swift in Sources */,
 				0731F411249244D300B6320A /* Pokemon.swift in Sources */,
 				0731F40E249244D300B6320A /* PokemonViewModel.swift in Sources */,
 				72B22AD9249A2A5300D8C7AC /* AppState.swift in Sources */,
@@ -645,6 +655,7 @@
 				0731F41F2492652E00B6320A /* PokemonInfoPanelAbilityList.swift in Sources */,
 				0731F40D249244D300B6320A /* AbilityViewModel.swift in Sources */,
 				72B22AD3249A276500D8C7AC /* MainTab.swift in Sources */,
+				7224B6AE249C526300D5D629 /* LoadAbilityRequest.swift in Sources */,
 				0731F414249244D300B6320A /* Sample.swift in Sources */,
 				7223C809249B97AA003FA0EC /* Array+Combine.swift in Sources */,
 				72B22AE5249A424B00D8C7AC /* AppAction.swift in Sources */,
@@ -657,6 +668,7 @@
 				72B22AD5249A27C600D8C7AC /* PokemonRootView.swift in Sources */,
 				7233124D249321D4004B427B /* SettingsRootView.swift in Sources */,
 				0731F41B249257A300B6320A /* PokemonList.swift in Sources */,
+				7224B6B2249C8D9F00D5D629 /* SafariView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

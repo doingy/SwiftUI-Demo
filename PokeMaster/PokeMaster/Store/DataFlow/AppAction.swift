@@ -11,9 +11,17 @@ import Foundation
 enum AppAction {
     case login(email: String, password: String)
     case accountBehaviorDone(result: Result<User, AppError>)
-    
+    case logout
     case email(valid: Bool)
+    case clearCache
+    
+    case toggleListSelection(index: Int?)
+    case togglePanelPresenting(presenting: Bool)
     
     case loadPokemons
     case loadPokemonsDone(result: Result<[PokemonViewModel], AppError>)
+    case closeSafariView
+    
+    case loadAbilities(pokemon: Pokemon)
+    case loadAbilitiesDone(result: Result<[AbilityViewModel], AppError>)
 }

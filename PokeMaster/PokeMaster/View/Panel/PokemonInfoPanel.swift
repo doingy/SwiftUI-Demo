@@ -32,8 +32,11 @@ struct PokemonInfoPanel: View {
     var body: some View {
         VStack(spacing: 20) {
             topIndicator
-            Header(model: model)
-            pokemonDescription
+            Group {
+                Header(model: model)
+                pokemonDescription
+            }.animation(nil)
+
             Divider()
             AbilityList(model: model, abilityModels: abilities)
         }

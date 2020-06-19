@@ -9,19 +9,51 @@
 import SwiftUI
 
 struct MainTab: View {
+    @EnvironmentObject var store: Store
+    
+    private var pokemonList: AppState.PokemonList {
+        store.appState.pokemonList
+    }
+    
+    private var pokemonListBinding: Binding<AppState.PokemonList> {
+        $store.appState.pokemonList
+    }
+    
+    private var selectedPanelIndex: Int? {
+        pokemonList.selectionsState.panelIndex
+    }
+    
     var body: some View {
-        TabView {
+        TabView(selection: $store.appState.mainTab.selection) {
             PokemonRootView().tabItem {
                 Image(systemName: "list.bullet.below.rectangle")
                 Text("列表")
-            }
+            }.tag(AppState.MainTab.Index.list)
             
             SettingsRootView().tabItem {
                 Image(systemName: "gear")
                 Text("设置")
+            }.tag(AppState.MainTab.Index.settings)
+        }
+        .overlaySheet(isPresented: pokemonListBinding.selectionsState.panelPresented) {
+            if self.selectedPanelIndex != nil && self.pokemonList.pokemons != nil {
+                PokemonInfoPanel(model: self.pokemonList.pokemons![self.selectedPanelIndex!]!)
             }
         }
-//        .edgesIgnoringSafeArea(.top)
+    }
+    
+    var panel: some View {
+        Group {
+            if pokemonList.selectionsState.panelPresented {
+                if selectedPanelIndex != nil && pokemonList.pokemons != nil {
+                    PokemonInfoPanelOverlay(model: pokemonList.pokemons![selectedPanelIndex!]!)
+                } else {
+                    EmptyView()
+                }
+            } else {
+                EmptyView()
+            }
+        }
     }
 }
 
